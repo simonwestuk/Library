@@ -13,9 +13,7 @@ public class Main {
 
         System.out.println(taunton.getBooks().toString());
 
-
         System.out.println(terry.toString());
-
 
 
     }
