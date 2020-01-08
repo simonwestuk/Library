@@ -45,6 +45,10 @@ public class Loan {
         this.book = book;
     }
 
+    public static int getNumOfLoans() {
+        return numOfLoans;
+    }
+
     public Date getDate() {
         return date;
     }

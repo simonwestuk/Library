@@ -7,7 +7,7 @@ public class Customer {
     private int id;
     private String name;
     private static int numOfCustomers = 1;
-    private static ArrayList<Loan> loans;
+    private ArrayList<Loan> loans;
 
     public Customer(Library library, String name) {
         this.id = numOfCustomers++;
@@ -41,7 +41,7 @@ public class Customer {
         loans.add(loan);
     }
 
-    public static ArrayList<Loan> getLoans() {
+    public ArrayList<Loan> getLoans() {
         return loans;
     }
 

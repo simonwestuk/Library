@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Library {
 
     private String location;
-    private static ArrayList<Book> books;
-    private static ArrayList<Customer> customers;
-    private static ArrayList<Loan> loans;
+    private ArrayList<Book> books;
+    private ArrayList<Customer> customers;
+    private ArrayList<Loan> loans;
 
     public Library(String location) {
         this.location = location;
@@ -22,6 +22,10 @@ public class Library {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public ArrayList<Customer> getCustomers() {
+        return customers;
     }
 
     public void addBook(Book book)
@@ -39,7 +43,7 @@ public class Library {
         loans.add(loan);
     }
 
-    public static ArrayList<Loan> getLoans() {
+    public ArrayList<Loan> getLoans() {
         return loans;
     }
 
@@ -55,8 +59,7 @@ public class Library {
         }
     }
 
-
-    public static ArrayList<Book> getBooks() {
+    public ArrayList<Book> getBooks() {
         return books;
     }
 }
