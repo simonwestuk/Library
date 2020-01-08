@@ -6,12 +6,14 @@ public class Book {
     private String title;
     private Author author;
     private Genre genre;
+    private boolean onloan;
 
     public Book(Library library, int ISBN, String title, Author author, Genre genre) {
         this.ISBN = ISBN;
         this.title = title;
         this.author = author;
         this.genre = genre;
+        this.onloan = false;
         author.addBook(this);
         library.addBook(this);
     }
@@ -43,6 +45,14 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public boolean isOnloan() {
+        return onloan;
+    }
+
+    public void setOnloan(boolean onloan) {
+        this.onloan = onloan;
     }
 
     @Override

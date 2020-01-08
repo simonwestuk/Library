@@ -11,10 +11,8 @@ public class Main {
         Author terry = new Author("Terry Pratchett");
         Book colour = new Book(taunton, 1617171, "Colour of Magic", terry, Genre.FANTASY);
 
-        System.out.println(taunton.getBooks().toString());
-
-        System.out.println(terry.toString());
-
-
+       System.out.println(taunton.loanBook(simon, colour, 7)) ;
+       System.out.println(taunton.getLoans().toString()) ;
+       System.out.println(simon.getLoans().toString()) ;
     }
 }
