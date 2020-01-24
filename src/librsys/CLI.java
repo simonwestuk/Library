@@ -61,7 +61,7 @@ public class CLI {
                     create(type);
                     break;
                 case "2":
-                    //view(type);
+                    view(type);
                     break;
                 case "3":
                     //update(type);
@@ -103,9 +103,10 @@ public class CLI {
             case "Customers":
                 System.out.print("Enter new Customer name:");
                 String name = input.readLine();
-                lib.addCustomer(new Customer(lib,name));
+                new Customer(lib,name);
                 System.out.println(name + " Added.");
                 createMenu();
+                lib.saveAll();
                 break;
             case "Books":
 
@@ -116,4 +117,18 @@ public class CLI {
         }
     }
 
+    private void view(String type) throws IOException {
+        switch(type) {
+            case "Customers":
+                System.out.print(lib.getCustomers().toString());
+
+                break;
+            case "Books":
+
+                break;
+            case "Loans":
+
+                break;
+        }
+    }
 }

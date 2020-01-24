@@ -1,8 +1,9 @@
 package librsys;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer implements Serializable {
 
     private int id;
     private String name;

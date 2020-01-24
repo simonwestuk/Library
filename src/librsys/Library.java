@@ -1,5 +1,7 @@
 package librsys;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library {
@@ -8,12 +10,14 @@ public class Library {
     private ArrayList<Book> books;
     private ArrayList<Customer> customers;
     private ArrayList<Loan> loans;
+    private Database database;
 
-    public Library(String location) {
+    public Library(String location) throws IOException {
         this.location = location;
         books = new ArrayList<Book>();
         customers = new ArrayList<Customer>();
         loans = new ArrayList<Loan>();
+        database = new Database(this);
     }
 
     public String getLocation() {
@@ -26,6 +30,10 @@ public class Library {
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+
+    public void setCustomers(ArrayList<Customer> customers) {
+        this.customers = customers;
     }
 
     public void addBook(Book book)
@@ -59,6 +67,9 @@ public class Library {
         }
     }
 
+    public void saveAll() throws FileNotFoundException {
+        database.saveCustomers("Customers.dat", customers);
+    }
     public ArrayList<Book> getBooks() {
         return books;
     }

@@ -1,6 +1,8 @@
 package librsys;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
 
     private int ISBN;
     private String title;
