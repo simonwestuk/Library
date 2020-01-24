@@ -7,11 +7,10 @@ public class Customer implements Serializable {
 
     private int id;
     private String name;
-    private static int numOfCustomers = 1;
     private ArrayList<Loan> loans;
 
     public Customer(Library library, String name) {
-        this.id = numOfCustomers++;
+        this.id = library.newCustomerId();
         this.name = name;
         loans = new ArrayList<Loan>();
         library.addCustomer(this);
@@ -31,10 +30,6 @@ public class Customer implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public static int getNumOfCustomers() {
-        return numOfCustomers;
     }
 
     public void addLoan(Loan loan)

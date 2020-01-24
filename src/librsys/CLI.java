@@ -104,7 +104,7 @@ public class CLI {
                 System.out.print("Enter new Customer name:");
                 String name = input.readLine();
                 new Customer(lib, name);
-                lib.saveAll();
+                lib.getDatabase().saveData();
                 System.out.println(name + " Added.");
                 createMenu();
                 break;
@@ -120,14 +120,13 @@ public class CLI {
     private void view(String type) throws IOException {
         switch(type) {
             case "Customers":
-                System.out.print(lib.getCustomers().toString());
-
+                System.out.print(lib.getDatabase().data().getCustomers());
                 break;
             case "Books":
-
+                System.out.print(lib.getDatabase().data().getBooks());
                 break;
             case "Loans":
-
+                System.out.print(lib.getDatabase().data().getLoans());
                 break;
         }
     }

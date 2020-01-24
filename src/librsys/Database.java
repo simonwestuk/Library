@@ -1,21 +1,17 @@
 package librsys;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class Database {
 
-    Library lib;
-    DataSet data;
-    String fileName = "Data.dat";
+    private Library lib;
+    private Dataset data;
+    private String fileName;
 
     public Database(Library lib) throws IOException {
         this.lib = lib;
-        this.data = new DataSet();
-        loadFiles();
-    }
-
-    public void loadFiles() throws IOException {
+        this.fileName = lib.getLocation() + ".dat";
+        this.data = new Dataset();
         if (checkFile(fileName))
         {
             loadData();
@@ -38,13 +34,9 @@ public class Database {
     public void saveData() throws FileNotFoundException {
         try
         {
-            data.save(lib);
-            System.out.println("SAVE " + data.toString());
             FileOutputStream fileOut = new FileOutputStream(fileName);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-
             objectOut.writeObject(data);
-
             objectOut.close();
             fileOut.close();
 
@@ -56,25 +48,23 @@ public class Database {
 
     }
 
+    public Dataset data() {
+        return data;
+    }
+
     public void loadData() throws IOException {
 
         try
         {
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
-            data = (DataSet) objectIn.readObject();
-            System.out.println("LOAD " + data.toString());
-            data.load(lib);
+            data = (Dataset) objectIn.readObject();
         }
         catch (IOException | ClassNotFoundException e)
         {
             e.printStackTrace();
         }
 
-
     }
-
-
 
 }
