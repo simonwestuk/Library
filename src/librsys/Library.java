@@ -2,6 +2,7 @@ package librsys;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Library {
@@ -14,9 +15,9 @@ public class Library {
 
     public Library(String location) throws IOException {
         this.location = location;
-        books = new ArrayList<Book>();
-        customers = new ArrayList<Customer>();
-        loans = new ArrayList<Loan>();
+        books = new ArrayList<>();
+        customers = new ArrayList<>();
+        loans = new ArrayList<>();
         database = new Database(this);
     }
 
@@ -47,8 +48,15 @@ public class Library {
     }
 
     public void addLoan(Loan loan)
-    {
-        loans.add(loan);
+    { loans.add(loan);
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+
+    public void setLoans(ArrayList<Loan> loans) {
+        this.loans = loans;
     }
 
     public ArrayList<Loan> getLoans() {
@@ -68,7 +76,7 @@ public class Library {
     }
 
     public void saveAll() throws FileNotFoundException {
-        database.saveCustomers("Customers.dat", customers);
+        database.saveData();
     }
     public ArrayList<Book> getBooks() {
         return books;

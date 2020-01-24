@@ -103,10 +103,10 @@ public class CLI {
             case "Customers":
                 System.out.print("Enter new Customer name:");
                 String name = input.readLine();
-                new Customer(lib,name);
+                new Customer(lib, name);
+                lib.saveAll();
                 System.out.println(name + " Added.");
                 createMenu();
-                lib.saveAll();
                 break;
             case "Books":
 

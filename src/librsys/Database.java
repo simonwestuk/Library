@@ -6,20 +6,23 @@ import java.util.ArrayList;
 public class Database {
 
     Library lib;
+    DataSet data;
+    String fileName = "Data.dat";
 
     public Database(Library lib) throws IOException {
         this.lib = lib;
+        this.data = new DataSet();
         loadFiles();
     }
 
     public void loadFiles() throws IOException {
-        if (checkFile("Customers.dat"))
+        if (checkFile(fileName))
         {
-            loadCustomers("Customers.dat");
+            loadData();
         }
         else
         {
-            saveCustomers("Customers.dat", lib.getCustomers());
+            saveData();
         }
     }
 
@@ -32,13 +35,15 @@ public class Database {
         return false;
     }
 
-    public void saveCustomers(String fileName, ArrayList<Customer> arrayList) throws FileNotFoundException {
+    public void saveData() throws FileNotFoundException {
         try
         {
+            data.save(lib);
+            System.out.println("SAVE " + data.toString());
             FileOutputStream fileOut = new FileOutputStream(fileName);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(arrayList);
+            objectOut.writeObject(data);
 
             objectOut.close();
             fileOut.close();
@@ -51,15 +56,16 @@ public class Database {
 
     }
 
-    public void loadCustomers(String fileName) throws IOException {
+    public void loadData() throws IOException {
 
         try
         {
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            lib.setCustomers((ArrayList<Customer>) objectIn.readObject());
-
+            data = (DataSet) objectIn.readObject();
+            System.out.println("LOAD " + data.toString());
+            data.load(lib);
         }
         catch (IOException | ClassNotFoundException e)
         {

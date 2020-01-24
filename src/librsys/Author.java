@@ -1,7 +1,8 @@
 package librsys;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Author {
+public class Author implements Serializable {
 
     private String name;
     private ArrayList<Book> books;
